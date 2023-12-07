@@ -55,13 +55,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   Spacer(),
-                  Image.asset(
-                    'wa0'.png,
-                    height: 42,
-                    width: 41,
+                  InkWell(
+                    onTap: () {},
+                    child: Image.asset(
+                      'wa0'.png,
+                      height: 42,
+                      width: 41,
+                    ),
                   ),
                   SizedBox(width: 8),
-                  Image.asset('wa1'.png, height: 42, width: 41),
+                  InkWell(
+                    onTap: () {},
+                    child: Image.asset('wa1'.png, height: 42, width: 41),
+                  ),
                 ],
               ),
               const SizedBox(height: 18),

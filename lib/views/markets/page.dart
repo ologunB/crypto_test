@@ -1,5 +1,7 @@
+import 'package:crypto_test/views/home/coin_details.dart';
 import 'package:crypto_test/views/widgets/coin_item_usdt.dart';
 import 'package:crypto_test/views/widgets/colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MarketsScreen extends StatefulWidget {
@@ -16,9 +18,11 @@ class _MarketsScreenState extends State<MarketsScreen> {
       backgroundColor: AppColors.primary,
       appBar: AppBar(
         backgroundColor: AppColors.onPrimary,
-        title: Text(
-          'Markets',
-          style: TextStyle(color: Colors.white, fontSize: 16),
+        title: Center(
+          child: Text(
+            'Markets',
+            style: TextStyle(color: Colors.white, fontSize: 16),
+          ),
         ),
       ),
       body: Padding(
@@ -29,7 +33,15 @@ class _MarketsScreenState extends State<MarketsScreen> {
           physics: ClampingScrollPhysics(),
           itemCount: 12,
           itemBuilder: (_, i) {
-            return CoinItemUsdt();
+            return InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    CupertinoPageRoute(builder: (_) => CoinDetailsScreen()));
+              },
+              borderRadius: BorderRadius.circular(20),
+              child: CoinItemUsdt.
+              (),
+            );
           },
         ),
       ),

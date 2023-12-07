@@ -1,6 +1,7 @@
 import 'package:crypto_test/views/widgets/coin_item_usdt.dart';
 import 'package:crypto_test/views/widgets/colors.dart';
 import 'package:crypto_test/views/widgets/utils.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CoinDetailsScreen extends StatefulWidget {
@@ -37,7 +38,6 @@ class _CoinDetailsScreenState extends State<CoinDetailsScreen> {
                   height: 24,
                   width: 24,
                 ),
-                SizedBox(width: 4),
                 Text(
                   'BTC / USDT',
                   style: TextStyle(
@@ -47,10 +47,13 @@ class _CoinDetailsScreenState extends State<CoinDetailsScreen> {
                   ),
                 ),
                 Spacer(),
-                Image.asset(
-                  'wa4'.png,
-                  height: 40,
-                  width: 40,
+                InkWell(
+                  onTap: () {},
+                  child: Image.asset(
+                    'wa4'.png,
+                    height: 40,
+                    width: 40,
+                  ),
                 ),
               ],
             ),
@@ -96,44 +99,50 @@ class _CoinDetailsScreenState extends State<CoinDetailsScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: Text(
-                      'Buy',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500),
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(10),
                     ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Text(
+                        'Buy',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    height: 45,
+                    width: 135,
                   ),
-                  height: 45,
-                  width: 135,
                 ),
                 SizedBox(width: 13),
-                Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.infrared,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: Text(
-                      'Sell',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500),
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.infrared,
+                      borderRadius: BorderRadius.circular(10),
                     ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Text(
+                        'Sell',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    height: 45,
+                    width: 135,
                   ),
-                  height: 45,
-                  width: 135,
                 ),
               ],
             ),
@@ -171,7 +180,16 @@ class _CoinDetailsScreenState extends State<CoinDetailsScreen> {
                 physics: ClampingScrollPhysics(),
                 itemCount: 6,
                 itemBuilder: (_, i) {
-                  return CoinItemUsdt();
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (_) => CoinDetailsScreen()));
+                    },
+                    borderRadius: BorderRadius.circular(20),
+                    child: CoinItemUsdt(),
+                  );
                 },
               ),
             ),
