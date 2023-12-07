@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           child: Column(
             children: [
-              const SizedBox(height: 40),
+              const SizedBox(height: 70),
               Row(
                 children: [
                   Image.asset('person'.png, height: 42, width: 42),
@@ -187,12 +187,13 @@ class _HomeScreenState extends State<HomeScreen> {
           itemCount: 6,
           itemBuilder: (_, i) {
             return InkWell(
-                onTap: () {
-                  Navigator.push(context,
-                      CupertinoPageRoute(builder: (_) => CoinDetailsScreen()));
-                },
-                borderRadius: BorderRadius.circular(20),
-                child: CoinItem());
+              onTap: () {
+                Navigator.push(context,
+                    CupertinoPageRoute(builder: (_) => CoinDetailsScreen()));
+              },
+              borderRadius: BorderRadius.circular(20),
+              child: CoinItem(),
+            );
           },
         ),
       ],

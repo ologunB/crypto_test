@@ -16,7 +16,7 @@ class _CoinDetailsScreenState extends State<CoinDetailsScreen> {
     return Scaffold(
       backgroundColor: AppColors.primary,
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 24),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
         child: ListView(
           children: [
             Row(
@@ -31,23 +31,20 @@ class _CoinDetailsScreenState extends State<CoinDetailsScreen> {
                     width: 40,
                   ),
                 ),
-                SizedBox(
-                  width: 59,
-                ),
+                Spacer(),
                 Image.asset(
                   'btc'.png,
                   height: 24,
                   width: 24,
                 ),
-                SizedBox(
-                  width: 4,
-                ),
+                SizedBox(width: 4),
                 Text(
                   'BTC / USDT',
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400),
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
                 Spacer(),
                 Image.asset(
