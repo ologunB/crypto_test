@@ -39,8 +39,7 @@ class _MarketsScreenState extends State<MarketsScreen> {
                     CupertinoPageRoute(builder: (_) => CoinDetailsScreen()));
               },
               borderRadius: BorderRadius.circular(20),
-              child: CoinItemUsdt.
-              (),
+              child: CoinItemUsdt(),
             );
           },
         ),
