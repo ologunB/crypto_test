@@ -1,11 +1,14 @@
-import 'package:crypto_test/views/widgets/coin_item_usdt.dart';
 import 'package:crypto_test/views/widgets/colors.dart';
 import 'package:crypto_test/views/widgets/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../models/coin_model.dart';
+import '../widgets/coin_icon.dart';
+
 class CoinDetailsScreen extends StatefulWidget {
-  const CoinDetailsScreen({super.key});
+  const CoinDetailsScreen({super.key, required this.coin});
+  final Coin coin;
 
   @override
   State<CoinDetailsScreen> createState() => _CoinDetailsScreenState();
@@ -26,20 +29,13 @@ class _CoinDetailsScreenState extends State<CoinDetailsScreen> {
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  child: Image.asset(
-                    'wa3'.png,
-                    height: 40,
-                    width: 40,
-                  ),
+                  child: Image.asset('wa3'.png, height: 40, width: 40),
                 ),
                 Spacer(),
-                Image.asset(
-                  'btc'.png,
-                  height: 24,
-                  width: 24,
-                ),
+                CoinIcon(widget.coin.image, 24),
+                SizedBox(width: 6),
                 Text(
-                  'BTC / USDT',
+                  '${widget.coin.symbol} / USDT',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -47,14 +43,7 @@ class _CoinDetailsScreenState extends State<CoinDetailsScreen> {
                   ),
                 ),
                 Spacer(),
-                InkWell(
-                  onTap: () {},
-                  child: Image.asset(
-                    'wa4'.png,
-                    height: 40,
-                    width: 40,
-                  ),
-                ),
+                Image.asset('wa4'.png, height: 40, width: 40),
               ],
             ),
             SizedBox(height: 28),
@@ -182,13 +171,11 @@ class _CoinDetailsScreenState extends State<CoinDetailsScreen> {
                 itemBuilder: (_, i) {
                   return InkWell(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                              builder: (_) => CoinDetailsScreen()));
+                      Navigator.push(context,
+                          CupertinoPageRoute(builder: (_) => SizedBox()));
                     },
                     borderRadius: BorderRadius.circular(20),
-                    child: CoinItemUsdt(),
+                    child: SizedBox(),
                   );
                 },
               ),

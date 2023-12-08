@@ -17,7 +17,10 @@ class _MainLayoutState extends State<MainLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const [HomeScreen(), MarketsScreen()][currentIndex],
+      body: IndexedStack(
+        children: const [HomeScreen(), MarketsScreen()],
+        index: currentIndex,
+      ),
       backgroundColor: AppColors.primary,
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.black.withOpacity(.2),
