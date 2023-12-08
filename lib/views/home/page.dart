@@ -1,3 +1,4 @@
+import 'package:crypto_test/blocs/watchlist/watch_bloc.dart';
 import 'package:crypto_test/views/widgets/colors.dart';
 import 'package:crypto_test/views/widgets/utils.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../blocs/coin/coin_bloc.dart';
+import '../../models/coin_model.dart';
 import '../widgets/coin_item.dart';
 import 'coin_details.dart';
 
@@ -220,26 +222,40 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             );
           } else if (state is CoinLoadedState) {
-            return ListView.separated(
-              separatorBuilder: (_, __) => SizedBox(height: 16),
-              shrinkWrap: true,
-              physics: ClampingScrollPhysics(),
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              itemCount: state.coins.length,
-              itemBuilder: (_, i) {
-                return InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                            builder: (_) =>
-                                CoinDetailsScreen(coin: state.coins[i])));
-                  },
-                  borderRadius: BorderRadius.circular(20),
-                  child: CoinItem(coin: state.coins[i]),
+            return BlocBuilder<WatchBloc, List<String>>(
+                builder: (context, wState) {
+              if (wState.isEmpty)
+                return Container(
+                  height: 200,
+                  alignment: Alignment.center,
+                  child: Text(
+                    'No items has been added to watchlist',
+                    style: TextStyle(color: Colors.white38),
+                  ),
                 );
-              },
-            );
+              List<Coin> coins = state.coins;
+              coins = coins.where((c) => wState.contains(c.id)).toList();
+              return ListView.separated(
+                separatorBuilder: (_, __) => SizedBox(height: 16),
+                shrinkWrap: true,
+                physics: ClampingScrollPhysics(),
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                itemCount: coins.length,
+                itemBuilder: (_, i) {
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (_) =>
+                                  CoinDetailsScreen(coin: coins[i])));
+                    },
+                    borderRadius: BorderRadius.circular(20),
+                    child: CoinItem(coin: coins[i]),
+                  );
+                },
+              );
+            });
           } else if (state is CoinErrorState) {
             return Container(
               height: 100,

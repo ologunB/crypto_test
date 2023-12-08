@@ -1,12 +1,16 @@
 import 'package:crypto_test/blocs/candle/candle_bloc.dart';
+import 'package:crypto_test/blocs/watchlist/watch_bloc.dart';
 import 'package:crypto_test/repos/repo.dart';
 import 'package:crypto_test/views/main_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/adapters.dart';
 
 import 'blocs/coin/coin_bloc.dart';
 
-void main() {
+Future<void> main() async {
+  await Hive.initFlutter();
+  await Hive.openBox<dynamic>('userBox');
   runApp(const MyApp());
 }
 
@@ -26,6 +30,7 @@ class MyApp extends StatelessWidget {
             create: (context) =>
                 CandleBloc(RepositoryProvider.of<Repo>(context)),
           ),
+          BlocProvider(create: (_) => WatchBloc()),
         ],
         child: MaterialApp(
           title: 'Crypto Test',
