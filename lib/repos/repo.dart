@@ -4,7 +4,7 @@ import 'package:candlesticks/candlesticks.dart';
 import 'package:http/http.dart' as http;
 import 'package:web_socket_channel/web_socket_channel.dart';
 
-class CoinRepo {
+class Repo {
   Future<Map<String, String>> fetchIcons() async {
     try {
       final uri = Uri.parse("https://rest.coinapi.io/v1/assets/icons/33");

@@ -1,11 +1,13 @@
 import 'package:crypto_test/views/widgets/utils.dart';
 import 'package:flutter/material.dart';
 
+import '../../models/coin_model.dart';
 import 'colors.dart';
 
 class CoinItem extends StatelessWidget {
-  const CoinItem({super.key});
+  const CoinItem({super.key, required this.coin});
 
+  final Coin coin;
   @override
   Widget build(BuildContext context) {
     return Container(
